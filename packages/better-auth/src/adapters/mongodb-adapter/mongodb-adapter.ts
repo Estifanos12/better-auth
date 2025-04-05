@@ -20,7 +20,8 @@ const createTransform = (options: BetterAuthOptions) => {
 			schema[model].fields[field].references?.field === "id"
 		) {
 			if (typeof value !== "string") {
-				if (value instanceof ObjectId) {
+
+				if (value instanceof ObjectId || value._bsontype === "ObjectId") {
 					return value;
 				}
 				if (Array.isArray(value)) {
